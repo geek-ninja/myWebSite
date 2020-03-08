@@ -1627,7 +1627,7 @@ h3 {
 
 /* line 141, ../../Arafath/CL/CL October/218 PORTFOLIO/HTML/scss/_slider.scss */
 .slider_area .single_slider .slider_text h3 {
-  color: rgba(90, 5, 86, 0.993);
+  color: white;
   font-family: "Muli", sans-serif;
   font-size: 80px;
   text-transform: capitalize;
@@ -1691,7 +1691,7 @@ h3 {
 .slider_area .single_slider .slider_text span {
   font-size: 30px;
   font-weight: 400;
-  color: rgb(0, 0, 0);
+  color: white;
   position: relative;
   z-index: 1;
 }
@@ -1699,7 +1699,7 @@ h3 {
 /* line 186, ../../Arafath/CL/CL October/218 PORTFOLIO/HTML/scss/_slider.scss */
 .slider_area .single_slider .slider_text span::before {
   position: absolute;
-  background: #000;
+  background: white;
   width: 50px;
   height: 2px;
   content: '';
