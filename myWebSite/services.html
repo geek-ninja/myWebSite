@@ -1,0 +1,375 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Service</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- DataBase -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCdyPtJXX9A0hIw4LyfxCiP7_3Nep03lB8",
+    authDomain: "my-website-eb5d5.firebaseapp.com",
+    databaseURL: "https://my-website-eb5d5.firebaseio.com",
+    projectId: "my-website-eb5d5",
+    storageBucket: "my-website-eb5d5.appspot.com",
+    messagingSenderId: "1891559028",
+    appId: "1:1891559028:web:b68c1b83000b9a204b5321",
+    measurementId: "G-3T6MC87EN3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  function save(){
+      
+      var database=firebase.database();
+      var ref=database.ref('projectRecord');
+      var userName=document.getElementById("user").value;
+      var userEmailId=document.getElementById("userEmail").value;
+      var userPhoneNo=document.getElementById("userPhone").value;
+      var userDetails=document.getElementById("details").value;
+      if (userName!='' && userDetails!='' && userEmailId!='' && userPhoneNo!=''){
+        /*---------------------------------------------------Later to modify---------------------------------------*/
+        // var userRef=ref.child('userRecord');
+        // userRef.child(userName).set({email:userEmailId,phoneNo:userPhoneNo,details:userDetails});
+        /*---------------------------------------------------------------------------------------------------------*/
+        var userData={name:userName,userEmail:userEmailId,phoneNo:userPhoneNo,details:userDetails};
+        ref.push(userData);
+        window.alert('Your query has been recorded ! Stay update to receive your project.');
+      }      
+      else{
+        window.alert("Please fill the forms completely..");
+        location.reload();
+      }
+  }
+</script>
+    <!-- End of Database -->
+
+    <!-- CSS here -->
+    <link rel="shortcut icon" href="data:image/jpeg;base64,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">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/gijgo.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/preloader.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+    <div id="load_screen">
+        <div class='body'>
+                <span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <div class='base'>
+                  <span></span>
+                  <div class='face'></div>
+                </div>
+              </div>
+              <div class='longfazers'>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <h1 class='loading'>Loading</h1>
+    </div> 
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-2">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="img/logo.png" width="180px" height="90px" alt="Sanket Dev">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a class="active" href="index.html">home</a></li>
+                                        
+                                        <li><a href="services.html">Services</a></li>
+                                        <li><a href="#">Projects<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="portfolio.html">Portfolio</a></li>
+                                                
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>Services</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /bradcam_area  -->
+    <!-- service_area  -->
+    <div class="service_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title text-center mb-65">
+                        <span>Sanket Dev</span>
+                        <h3>Let's Build Your Project <br>
+                                Together</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service text-center">
+                        <div class="icon">
+                            <img src="img/svg_icon/1.svg" alt="">
+                        </div>
+                        <h3>Graphic design</h3>
+                        <p>Using Photoshop</p>
+                        <p>Using After-effects</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service text-center">
+                        <div class="icon">
+                            <img src="img/svg_icon/2.svg" alt="">
+                        </div>
+                        <h3>Web design</h3>
+                        <p>Using html</p>
+                        <p>Using css</p>
+                        <p>Using javascripts</p>
+                        <p>Using bootstraps</p>
+                        <p>Using Django</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service text-center">
+                        <div class="icon">
+                            <img src="img/svg_icon/3.svg" alt="">
+                        </div>
+                        <h3>Mobile app</h3>
+                        <p>Using java and xml in android studios</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ service_area  -->
+
+    <div class="project_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-6">
+                    <div class="projects_thumb">
+                        <img src="img/about/projects.png" alt="">
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="projects_info">
+                        <br>
+                        <p>Enter the UserName</p>
+                        <input class="userName" type="text" id="user" placeholder="No special characters are allowed" required><br>
+                        <p>Enter your Email id </p>
+                        <input class="userName" type="text" id="userEmail" placeholder="Enter your email id." required><br>
+                        <p>Enter your phone number</p>
+                        <input class="userName" type="text" id="userPhone" placeholder="Enter your phone number." required><br>
+                        <p>Give the details of your project you want to create.</p>
+                        <textarea class="userDetails" id="details" placeholder="Details of your projects.." required></textarea><br>
+                        <input class="userSubmit" type="submit" onclick="save()" value="Send">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- testimonial_area  -->
+    <div class="testimonial_area ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="testmonial_active owl-carousel">
+                            <div class="single_carousel">
+                                    <div class="single_testmonial text-center">
+                                            <div class="quote">
+                                                <img src="img/testmonial/quote.svg" alt="">
+                                            </div>
+                                            <p>“Talk is cheap. Show me the code.”</p>
+                                            <div class="testmonial_author">
+                                                <div class="thumb">
+                                                        <img src="img/testmonial/linux.jpg" alt="">
+                                                </div>
+                                                <h3>-- Linus Torvalds</h3>
+                                                <span>software engineer</span>
+                                                <span>Linux kernel developer</span>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="single_carousel">
+                                    <div class="single_testmonial text-center">
+                                            <div class="quote">
+                                                <img src="img/testmonial/quote.svg" alt="">
+                                            </div>
+                                            <p>“when you don't create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create.”</p>
+                                            <div class="testmonial_author">
+                                                <div class="thumb">
+                                                        <img src="img/testmonial/lucky.jpg" alt="">
+                                                </div>
+                                                <h3>--Why The Lucky Stiff</h3>
+                                                <span>programmer</span>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="single_carousel">
+                                    <div class="single_testmonial text-center">
+                                            <div class="quote">
+                                                <img src="img/testmonial/quote.svg" alt="">
+                                            </div>
+                                            <p>“Programs must be written for people to read, and only incidentally for machines to execute.”</p>
+                                            <div class="testmonial_author">
+                                                <div class="thumb">
+                                                        <img src="img/testmonial/harold.jpg" alt="">
+                                                </div>
+                                                <h3>--Harold Abelson</h3>
+                                                <span>Structure and Interpretation of Computer Programs</span>
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /testimonial_area  -->
+    
+    <div class="discuss_projects">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="project_text text-center">
+                        <h3>Let’s discuss for a project</h3>
+                        <p>Let's built the this project together.<br>Contact me and give your project details.</p>
+                        <a class="boxed-btn3" href="services.html">Lets' start</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer start -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-md-6">
+                        <div class="menu_links">
+                            <ul>
+                                <li><p style="color: wheat;">Follow Us ...</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <div class="socail_links">
+                            <ul>
+                                <li><a href="https://github.com/hacker-kyrie"> <i class="fa fa-github"></i> </a></li>
+                                <li><a href="https://www.youtube.com/channel/UCzrxNX6sIQvu0th2rLl_nQg?view_as=subscriber"> <i class="fa fa-youtube"></i> </a></li>
+                                <li><a href="https://www.linkedin.com/in/sanket-puhan-9261a8198/"> <i class="fa fa-linkedin"></i> </a></li>
+                                <li><a href="https://www.instagram.com/sanket_kyrie11/"> <i class="fa fa-instagram"></i> </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--/ footer end  -->
+
+    <!-- JS here -->
+    <script src="js/preLoader.js"></script>
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/ajax-form.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/scrollIt.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/nice-select.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/gijgo.min.js"></script>
+
+    <!--contact js-->
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
